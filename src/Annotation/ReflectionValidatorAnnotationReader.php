@@ -2,12 +2,12 @@
 
 namespace Reflection\Validator\Annotation;
 
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\SimpleAnnotationReader;
 
 /**
  * Adds an ability to validate a method reflecting the annotation.
  */
-class ReflectionValidatorAnnotationReader extends AnnotationReader
+class ReflectionValidatorAnnotationReader extends SimpleAnnotationReader
 {
     /**
      * {@inheritdoc}
