@@ -14,7 +14,7 @@ class FunctionValidator
     /**
      * A function/method to check the specification of.
      *
-     * @var \ReflectionFunction|\ReflectionMethod
+     * @var \ReflectionFunctionAbstract
      */
     protected $target;
     /**
