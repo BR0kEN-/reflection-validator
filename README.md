@@ -16,17 +16,19 @@ A real example from Drupal/Symfony world: http://cgit.drupalcode.org/form_alter_
 ## Example
 
 ```php
+namespace Path\To\Annotations;
+
+use Reflection\Validator\Annotation\ReflectionValidatorAnnotationReader;
+use Reflection\Validator\Annotation\ReflectionValidatorMethodAnnotationInterface;
+
 /**
  * @Annotation
  * @Target({"METHOD"})
  */
-class ExampleAnnotation
+class ExampleAnnotation implements ReflectionValidatorMethodAnnotationInterface
 {
     /**
-     * Validates whether handler defined properly.
-     *
-     * @param \ReflectionMethod $method
-     *   A method to validate.
+     * {@inheritdoc}
      */
     public function validate(\ReflectionMethod $method)
     {
@@ -45,4 +47,8 @@ class ExampleAnnotation
             );
     }
 }
+
+$reader = new ReflectionValidatorAnnotationReader();
+$method = new \ReflectionMethod('Path\To\Class', 'nameOfMethod');
+$annotation = $reader->getMethodAnnotation($method, 'Path\To\Annotations\ExampleAnnotation');
 ```
