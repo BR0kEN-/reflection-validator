@@ -18,6 +18,7 @@ class ReflectionValidatorAnnotationReaderTest extends TestCase
         );
 
         $reader = new ReflectionValidatorAnnotationReader();
+        $reader->addNamespace(__NAMESPACE__);
 
         $this->assertInstanceOf(TestAnnotationInvalid::class, $reader->getMethodAnnotation(
             new \ReflectionMethod(TestClass::class, 'testMethodAnnotationInvalid'),
@@ -28,6 +29,7 @@ class ReflectionValidatorAnnotationReaderTest extends TestCase
     public function testAnnotationValid()
     {
         $reader = new ReflectionValidatorAnnotationReader();
+        $reader->addNamespace(__NAMESPACE__);
 
         $this->assertInstanceOf(TestAnnotationValid::class, $reader->getMethodAnnotation(
             new \ReflectionMethod(TestClass::class, 'testMethodAnnotationValid'),

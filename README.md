@@ -49,6 +49,8 @@ class ExampleAnnotation implements ReflectionValidatorMethodAnnotationInterface
 }
 
 $reader = new ReflectionValidatorAnnotationReader();
+$reader->addNamespace('Path\To\Annotations');
+
 $method = new \ReflectionMethod('Path\To\Class', 'nameOfMethod');
 $annotation = $reader->getMethodAnnotation($method, 'Path\To\Annotations\ExampleAnnotation');
 ```
