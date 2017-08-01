@@ -1,0 +1,7 @@
+.*
+
+!.git*
+
+# CI stuff.
+!.travis.yml
+!.scrutinizer.yml

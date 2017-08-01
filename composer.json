@@ -1,0 +1,30 @@
+{
+  "name": "BR0kEN-/reflection-validator",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/BR0kEN-/reflection-validator",
+  "description": "Define a specification of PHP entity and check whether the particular item matches it.",
+  "keywords": ["reflection", "method", "function", "validate", "validator"],
+  "authors": [
+    {
+      "name": "Sergii Bondarenko",
+      "email": "sb@firstvector.org"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">=5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Reflection\\Validator\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Reflection\\Tests\\Validator\\": "tests/src"
+    }
+  }
+}
