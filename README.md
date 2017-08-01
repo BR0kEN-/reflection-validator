@@ -43,6 +43,6 @@ class ExampleAnnotation
                     ->setOptional(false)
                     ->setPassedByReference(false)
             );
-  }
+    }
 }
 ```
