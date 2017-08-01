@@ -19,7 +19,7 @@ class MethodValidator extends FunctionValidator
     {
         parent::__construct($method);
 
-        if ('' !== $required_class && !is_a($method->getDeclaringClass()->getName(), $required_class, true)) {
+        if ('' !== $required_class && !is_a($method->class, $required_class, true)) {
             $this->exception->addError('The @function defined in the class that not inherits "@requiredClass".', [
                 '@requiredClass' => $required_class,
             ]);

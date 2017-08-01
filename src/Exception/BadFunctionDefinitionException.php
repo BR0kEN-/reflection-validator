@@ -34,16 +34,9 @@ class BadFunctionDefinitionException extends \ReflectionException implements \Ar
         parent::__construct();
 
         if ($function instanceof \ReflectionMethod) {
-            $this->tokens['@function'] = sprintf(
-                '"%s::%s()" method',
-                $function->getDeclaringClass()->getName(),
-                $function->getName()
-            );
+            $this->tokens['@function'] = sprintf('"%s::%s()" method', $function->class, $function->name);
         } elseif ($function instanceof \ReflectionFunction) {
-            $this->tokens['@function'] = sprintf(
-                '"%s()" function',
-                $function->getName()
-            );
+            $this->tokens['@function'] = sprintf('"%s()" function', $function->name);
         } else {
             $this->message = sprintf(
                 'The argument of the "%s()" must be of "%s" or "%s" type, "%s" given.',

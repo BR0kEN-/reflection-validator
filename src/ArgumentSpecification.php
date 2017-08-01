@@ -143,18 +143,14 @@ class ArgumentSpecification
      */
     private function checkName()
     {
-        if (empty($this->exception->getErrors())) {
-            $given_name = $this->parameter->getName();
-
-            if ($this->name !== $given_name) {
-                $this->exception->addError(
-                    'The @argument of the @function has the "@givenName" name, but must be "@requiredName".',
-                    [
-                        '@givenName' => $given_name,
-                        '@requiredName' => $this->name,
-                    ]
-                );
-            }
+        if (empty($this->exception->getErrors()) && $this->name !== $this->parameter->name) {
+            $this->exception->addError(
+                'The @argument of the @function has the "@givenName" name, but must be "@requiredName".',
+                [
+                    '@givenName' => $this->parameter->name,
+                    '@requiredName' => $this->name,
+                ]
+            );
         }
     }
 
