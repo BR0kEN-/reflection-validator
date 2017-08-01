@@ -18,7 +18,6 @@ A real example from Drupal/Symfony world: http://cgit.drupalcode.org/form_alter_
 ```php
 namespace Path\To\Annotations;
 
-use Reflection\Validator\Annotation\ReflectionValidatorAnnotationReader;
 use Reflection\Validator\Annotation\ReflectionValidatorMethodAnnotationInterface;
 
 /**
@@ -47,10 +46,30 @@ class ExampleAnnotation implements ReflectionValidatorMethodAnnotationInterface
             );
     }
 }
+```
+
+```php
+namespace Path\To\Components;
+
+class ExampleClass
+{
+    /**
+     * @ExampleAnnotation
+     */
+    public function exampleMethod(array &$form, FormStateInterface $formState)
+    {
+      // An instance of the "\ReflectionMethod" for this method will be passed
+      // to the "validate()" method of the "ExampleAnnotation" annotation.
+    }
+}
+```
+
+```php
+use Reflection\Validator\Annotation\ReflectionValidatorAnnotationReader;
 
 $reader = new ReflectionValidatorAnnotationReader();
 $reader->addNamespace('Path\To\Annotations');
 
-$method = new \ReflectionMethod('Path\To\Class', 'nameOfMethod');
+$method = new \ReflectionMethod('Path\To\Components\ExampleClass', 'exampleMethod');
 $annotation = $reader->getMethodAnnotation($method, 'Path\To\Annotations\ExampleAnnotation');
 ```
