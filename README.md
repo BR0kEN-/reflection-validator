@@ -6,3 +6,9 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/reflection/validator.svg?style=flat-square)](https://packagist.org/packages/reflection/validator)
 [![Latest Stable Version](https://poser.pugx.org/reflection/validator/v/stable?format=flat-square)](https://packagist.org/packages/reflection/validator)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/reflection/validator)
+
+## When might it be useful?
+
+Sometimes you may want to have an unlimited sequence of methods, which cannot be restricted/controlled by the interface. In this case on a "compilation" stage, you can restrict those methods to follow the standards you expect.
+
+A real example from Drupal/Symfony world: http://cgit.drupalcode.org/form_alter_service/tree/src/FormAlterCompilerPass.php
