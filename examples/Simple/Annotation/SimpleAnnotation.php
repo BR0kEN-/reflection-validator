@@ -2,8 +2,10 @@
 
 namespace Reflection\Examples\Validator\Simple\Annotation;
 
-use Reflection\Examples\Validator\Simple\Component\SimpleComponent;
+use Reflection\Validator\MethodValidator;
+use Reflection\Validator\ArgumentSpecification;
 use Reflection\Validator\Annotation\ReflectionValidatorMethodAnnotationInterface;
+use Reflection\Examples\Validator\Simple\Component\SimpleComponent;
 
 /**
  * @Annotation

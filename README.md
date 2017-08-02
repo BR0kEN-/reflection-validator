@@ -15,7 +15,7 @@ A real example from Drupal/Symfony world: http://cgit.drupalcode.org/form_alter_
 
 ## Example
 
-Besides of [fully-operable examples](examples), you can check a quick sample:
+Besides of [fully-operable examples](examples), you can check a quick use case:
 
 ```php
 (new MethodValidator(object<ReflectionMethod>, string<FQCN>))
