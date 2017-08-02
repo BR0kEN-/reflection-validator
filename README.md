@@ -18,6 +18,8 @@ A real example from Drupal/Symfony world: http://cgit.drupalcode.org/form_alter_
 ```php
 namespace Path\To\Annotations;
 
+use Reflection\Validator\MethodValidator;
+use Reflection\Validator\ArgumentSpecification;
 use Reflection\Validator\Annotation\ReflectionValidatorMethodAnnotationInterface;
 
 /**
@@ -31,7 +33,15 @@ class ExampleAnnotation implements ReflectionValidatorMethodAnnotationInterface
      */
     public function validate(\ReflectionMethod $method)
     {
-        (new MethodValidator($method, 'Path\To\Class\Methods\Allowed\To\Be\Children\Of'))
+        // - The method must be a member of "Path\To\Components\ExampleClass"
+        //   or its children.
+        // - The method must have 2 arguments (not less and not more, exactly
+        //   2).
+        // - The first argument of the method must be of "array" type, passed
+        //   by reference and with the "form" name.
+        // - The second argument of the method must be of "FormStateInterface"
+        //   type, not passed by reference and with the "formState" name.
+        (new MethodValidator($method, 'Path\To\Components\ExampleClass'))
             ->addArgument(
                 (new ArgumentSpecification('form'))
                     ->setType('array')
@@ -65,11 +75,13 @@ class ExampleClass
 ```
 
 ```php
+use Path\To\Components\ExampleClass;
+use Path\To\Annotations\ExampleAnnotation;
 use Reflection\Validator\Annotation\ReflectionValidatorAnnotationReader;
 
 $reader = new ReflectionValidatorAnnotationReader();
 $reader->addNamespace('Path\To\Annotations');
 
-$method = new \ReflectionMethod('Path\To\Components\ExampleClass', 'exampleMethod');
-$annotation = $reader->getMethodAnnotation($method, 'Path\To\Annotations\ExampleAnnotation');
+$method = new \ReflectionMethod(ExampleClass::class, 'exampleMethod');
+$annotation = $reader->getMethodAnnotation($method, ExampleAnnotation::class);
 ```
