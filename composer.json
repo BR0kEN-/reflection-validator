@@ -25,7 +25,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Reflection\\Tests\\Validator\\": "tests"
+      "Reflection\\Tests\\Validator\\": "tests",
+      "Reflection\\Examples\\Validator\\": "examples"
     }
   }
 }

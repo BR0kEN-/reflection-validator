@@ -15,73 +15,20 @@ A real example from Drupal/Symfony world: http://cgit.drupalcode.org/form_alter_
 
 ## Example
 
-```php
-namespace Path\To\Annotations;
-
-use Reflection\Validator\MethodValidator;
-use Reflection\Validator\ArgumentSpecification;
-use Reflection\Validator\Annotation\ReflectionValidatorMethodAnnotationInterface;
-
-/**
- * @Annotation
- * @Target({"METHOD"})
- */
-class ExampleAnnotation implements ReflectionValidatorMethodAnnotationInterface
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function validate(\ReflectionMethod $method)
-    {
-        // - The method must be a member of "Path\To\Components\ExampleClass"
-        //   or its children.
-        // - The method must have 2 arguments (not less and not more, exactly
-        //   2).
-        // - The first argument of the method must be of "array" type, passed
-        //   by reference and with the "form" name.
-        // - The second argument of the method must be of "FormStateInterface"
-        //   type, not passed by reference and with the "formState" name.
-        (new MethodValidator($method, 'Path\To\Components\ExampleClass'))
-            ->addArgument(
-                (new ArgumentSpecification('form'))
-                    ->setType('array')
-                    ->setOptional(false)
-                    ->setPassedByReference(true)
-            )
-            ->addArgument(
-                (new ArgumentSpecification('formState'))
-                    ->setType(FormStateInterface::class)
-                    ->setOptional(false)
-                    ->setPassedByReference(false)
-            );
-    }
-}
-```
+Besides of [fully-operable examples](examples), you can check a quick sample:
 
 ```php
-namespace Path\To\Components;
-
-class ExampleClass
-{
-    /**
-     * @ExampleAnnotation
-     */
-    public function exampleMethod(array &$form, FormStateInterface $formState)
-    {
-      // An instance of the "\ReflectionMethod" for this method will be passed
-      // to the "validate()" method of the "ExampleAnnotation" annotation.
-    }
-}
-```
-
-```php
-use Path\To\Components\ExampleClass;
-use Path\To\Annotations\ExampleAnnotation;
-use Reflection\Validator\Annotation\ReflectionValidatorAnnotationReader;
-
-$reader = new ReflectionValidatorAnnotationReader();
-$reader->addNamespace('Path\To\Annotations');
-
-$method = new \ReflectionMethod(ExampleClass::class, 'exampleMethod');
-$annotation = $reader->getMethodAnnotation($method, ExampleAnnotation::class);
+(new MethodValidator(object<ReflectionMethod>, string<FQCN>))
+    ->addArgument(
+        (new ArgumentSpecification('form'))
+            ->setType('array')
+            ->setOptional(false)
+            ->setPassedByReference(true)
+    )
+    ->addArgument(
+        (new ArgumentSpecification('formState'))
+            ->setType(Iterator::class)
+            ->setOptional(false)
+            ->setPassedByReference(false)
+    );
 ```
