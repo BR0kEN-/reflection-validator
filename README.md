@@ -13,7 +13,7 @@ Sometimes you may want to have an unlimited sequence of methods, which cannot be
 
 A real example from Drupal/Symfony world: http://cgit.drupalcode.org/form_alter_service/tree/src/FormAlterCompilerPass.php
 
-## Example
+## Examples
 
 Besides of [fully-operable examples](examples), you can check a quick use case:
 
