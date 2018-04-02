@@ -13,7 +13,7 @@
   ],
   "require": {
     "php": ">=7.0",
-    "doctrine/annotations": "1.2.*"
+    "doctrine/annotations": "1.*"
   },
   "require-dev": {
     "phpunit/phpunit": ">=5"
